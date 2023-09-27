@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Define the name of the Conda environment
+conda_env_name="pix2tex-env"
+
+# Check if the Conda environment already exists
+echo "Checking if Conda environment $conda_env_name exists..."
+if ! conda info --envs | grep -q "$conda_env_name"; then
+    echo "Conda environment $conda_env_name does not exist. Creating it..."
+    # Create a Conda environment with Python 3.10 if it doesn't exist
+    conda create -y -n "$conda_env_name" python=3.10
+fi
+
+# Activate the Conda environment'
+echo "Activating Conda environment $conda_env_name..."
+eval "$(conda shell.bash hook)"
+conda activate "$conda_env_name"
+
+# Check if the Conda environment was activated successfully
+if [ $? -ne 0 ]; then
+    echo "Failed to activate conda environment $conda_env_name"
+    exit 1
+fi
+
+# Install the required packages
+echo "Installing required packages..."
+pip3 install pix2tex[train] gpustat opencv-python-headless wandb
+
+echo Checking for GPU
+# Check if gpus are available and if no gpus are available confirm with user to continue
+if [ -z "$(gpustat -i)" ]; then
+    echo "No GPUs available. Training will take a long time and you will need to modify the config file to use CPU."
+    read -p "Continue? (y/n) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
+# Download and extract the data
+echo Downloading data
+python3 scripts/download_and_extract_data.py && \
+echo Reorganizing data for training
+python3 scripts/reorganize_data.py
+
+# Generate the dataset
+echo Generate Lukas dataloader files
+python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/train.pkl
+python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/val.pkl
+
+# Generate the tokenizer
+echo Generate tokenizer
+python3 -m pix2tex.dataset.dataset --equations dataset/data/im2latex_formulas.final.lst --vocab-size 8000 --out tokenizer.json
+
+# Train the model
+echo Using custom config file in config/custom.yaml
+echo Training
+python3 -m pix2tex.train --config config/custom.yaml

@@ -14,8 +14,8 @@ urls = [
 ]
 
 # Directory to save the downloaded files (in the same directory as the script)
-script_dir = os.path.dirname(os.path.abspath(__file__))
-download_dir = os.path.join(script_dir, "dataset/data")
+project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+download_dir = os.path.join(project_dir, "dataset/data")
 
 # Create the directory if it doesn't exist
 os.makedirs(download_dir, exist_ok=True)
@@ -26,7 +26,7 @@ def download_file(url):
     file_name = os.path.join(download_dir, url.split("/")[-1])
 
     # Check if the file already exists; if yes, skip downloading
-    if os.path.exists(file_name):
+    if os.path.exists(file_name) and os.path.getsize(file_name) > 0:
         print(f"File already exists, skipping download: {file_name}")
         return
 
