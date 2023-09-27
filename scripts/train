@@ -11,7 +11,7 @@ pip3 install pix2tex[train] gpustat opencv-python-headless wandb
 
 echo Checking for GPU
 # Check if gpus are available and if no gpus are available confirm with user to continue
-if [ -z "$(gpustat -i)" ]; then
+if [ -z "$(gpustat)" ]; then
     echo "No GPUs available. Training will take a long time and you will need to modify the config file to use CPU."
     read -p "Continue? (y/n) " -n 1 -r
     echo
