@@ -31,7 +31,7 @@
   min_height: 32,
   min_width: 32,
   model_path: checkpoints,
-  name: original,
+  name: original-b32,
   num_layers: 4,
   num_tokens: 8000,
   optimizer: Adam,
