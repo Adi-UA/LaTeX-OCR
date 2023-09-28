@@ -28,7 +28,7 @@ python3 scripts/reorganize_data.py
 
 # Generate the tokenizer
 echo Generate tokenizer
-python3 -m pix2tex.dataset.dataset --equations dataset/data/im2latex_formulas.final.lst --vocab-size 8000 --out custom/tokenizer.json
+python3 -m pix2tex.dataset.dataset --equations dataset/data/train.lst --vocab-size 8000 --out custom/tokenizer.json
 
 # Generate the dataset
 echo Generate Lukas dataloader files
