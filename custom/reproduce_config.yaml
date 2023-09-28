@@ -31,7 +31,7 @@
   min_height: 32,
   min_width: 32,
   model_path: checkpoints,
-  name: mixed,
+  name: original,
   num_layers: 4,
   num_tokens: 8000,
   optimizer: Adam,
@@ -46,7 +46,7 @@
   temperature: 0.2,
   test_samples: 5,
   testbatchsize: 20,
-  tokenizer: custom/tokenizer.json,
+  tokenizer: dataset/tokenizer.json,
   valbatches: 100,
   valdata: dataset/data/val.pkl,
 }
