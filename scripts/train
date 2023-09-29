@@ -28,15 +28,15 @@ python3 scripts/reorganize_data.py
 
 # Generate the tokenizer
 echo Generate tokenizer
-python3 -m pix2tex.dataset.dataset --equations dataset/data/im2latex_formulas.final.lst --vocab-size 8000 --out custom/tokenizer.json
+python3 -m pix2tex.dataset.dataset --equations dataset/data/train.lst --vocab-size 8000 --out custom/train_tokenizer.json
 
 # Generate the dataset
 echo Generate Lukas dataloader files
-python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/train.pkl -t custom/tokenizer.json
-python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/val.pkl -t custom/tokenizer.json
+python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/train.pkl -t custom/train_tokenizer.json
+python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/val.pkl -t custom/train_tokenizer.json
 
 
 # Train the model
-echo Using custom config file in custom/config.yaml
+echo Using custom config file in custom/train_tok_config.yaml
 echo Training
-python3 -m pix2tex.train --config custom/config.yaml
+python3 -m pix2tex.train --config custom/train_tok_config.yaml

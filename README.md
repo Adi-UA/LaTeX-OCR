@@ -14,7 +14,15 @@ Model training on the Im2Latex-100k can be started by running:
 ./scripts/train
 ```
 
-The script will download and prepare the data, create the tokenizer and then start training. The config file is located in `custom/config.yaml`. The data being used is the normalized version of the Im2Latex-100k dataset from the original paper with some additional preprocessing of the LaTeX code. The details of the preprocessing can be found in `scripts/download_and_extract_data.py`.
+The script will download and prepare the data, create the tokenizer and then start training. The config file is located in `custom/train_tok_config.yaml`. The data being used is the normalized version of the Im2Latex-100k dataset from the original paper with some additional preprocessing of the LaTeX code. The details of the preprocessing can be found in `scripts/download_and_extract_data.py`.
+
+Important Notes:
+
+- The `train` script will train the model after creating a tokenizer using only the training data.
+- The `train_2` script will train the model after creating a tokenizer using the entire dataset (training, val, testing). This is to see the difference in model performance. `train_2` assumes that the data has already been downloaded and reorganized by the `train` script. One way to run only the second training script is:
+  - Run `python3 scripts/download_and_extract_data.py`
+  - Run `python3 scripts/reorganize_data.py`, and
+  - Finally run `./scripts/train_2`.
 
 ## Using the model
 
