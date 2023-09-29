@@ -21,18 +21,17 @@ if [ -z "$(gpustat)" ]; then
     fi
 fi
 
-# Check if dataset/data folder is present and ask the user if they want to wipe and re-download the data
-if [ -d "dataset/data" ]; then
-    read -p "dataset/data folder already exists. Do you want to wipe and re-download the data? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        rm -rf dataset/data
-        echo Downloading data
-        python3 scripts/download_and_extract_data.py && \
-        echo Reorganizing data for training
-        python3 scripts/reorganize_data.py
-    fi
+
+read -p "dataset/data folder already exists. Do you want to wipe and re-download the data? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    rm -rf dataset/data
+    echo Downloading data
+    python3 scripts/download_and_extract_data.py && \
+    echo Reorganizing data for training
+    python3 scripts/reorganize_data.py
 fi
+
 
 
 # Generate the tokenizer
