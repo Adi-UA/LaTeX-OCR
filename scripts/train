@@ -12,7 +12,8 @@ pip3 install pix2tex[train] gpustat opencv-python-headless wandb
 echo Checking for GPU
 # Check if gpus are available and if no gpus are available confirm with user to continue
 if [ -z "$(gpustat)" ]; then
-    echo "No GPUs available. Training will take a long time and you will need to modify the config file to use CPU."
+    # Print the following line in red
+    echo -e "\e[31mNo GPUs available. Training will take a long time and you will need to modify the config file to use CPU.\e[0m"
     read -p "Continue? (y/n) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -20,23 +21,53 @@ if [ -z "$(gpustat)" ]; then
     fi
 fi
 
-# Download and extract the data
-echo Downloading data
-python3 scripts/download_and_extract_data.py && \
-echo Reorganizing data for training
-python3 scripts/reorganize_data.py
+
+read -p "dataset/data folder already exists. Do you want to wipe and re-download the data? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    rm -rf dataset/data
+    echo Downloading data
+    python3 scripts/download_and_extract_data.py && \
+    echo Reorganizing data for training
+    python3 scripts/reorganize_data.py
+fi
+
+
 
 # Generate the tokenizer
-echo Generate tokenizer
-python3 -m pix2tex.dataset.dataset --equations dataset/data/train.lst --vocab-size 8000 --out custom/train_tokenizer.json
+read -p "Enter the path to the input file (default: dataset/data/train.lst): " input_file
+if [ -z "$input_file" ]; then
+    input_file="dataset/data/train.lst"
+fi
+
+# Read input for tokenizer file, if it is not present use the default tokenizer file
+read -p "Enter the path to the tokenizer file (default: custom/train_tokenizer.json): " tokenizer_file
+if [ -z "$tokenizer_file" ]; then
+    tokenizer_file="train_tokenizer.json"
+fi
+python3 -m pix2tex.dataset.dataset --equations $input_file --vocab-size 8000 --out custom/$tokenizer_file
+
+# Ask for a unique name for the experiment
+read -p "Enter a unique name for the experiment (default: pix2tex): " experiment_name
+if [ -z "$experiment_name" ]; then
+    experiment_name="pix2tex"
+fi
+
+train_pkl=$experiment_name"_train.pkl"
+val_pkl=$experiment_name"_val.pkl"
 
 # Generate the dataset
 echo Generate Lukas dataloader files
-python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/train.pkl -t custom/train_tokenizer.json
-python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/val.pkl -t custom/train_tokenizer.json
+python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/$train_pkl -t custom/$tokenizer_file
+python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/$val_pkl -t custom/$tokenizer_file
 
 
-# Train the model
-echo Using custom config file in custom/train_tok_config.yaml
+# Training
+read -p "Enter the path to the config file (default: custom/train_tok_config.yaml): " config_file
+if [ -z "$config_file" ]; then
+    config_file="custom/train_tok_config.yaml"
+fi
+
+echo Using config file: $config_file
 echo Training
-python3 -m pix2tex.train --config custom/train_tok_config.yaml
+python3 -m pix2tex.train --config $config_file
