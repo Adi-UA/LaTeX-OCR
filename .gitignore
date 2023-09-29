@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 checkpoints/
 custom/*.json
+/custom_checkpoints/
 
 # C extensions
 *.so
