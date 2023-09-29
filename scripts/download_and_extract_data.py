@@ -4,6 +4,8 @@ import re
 import subprocess
 import tarfile
 
+from tqdm.auto import tqdm
+
 # List of URLs to download
 urls = [
     "https://im2markup.yuntiandeng.com/data/im2latex_formulas.norm.lst",
@@ -65,7 +67,7 @@ def preprocess_latex():
 
     print(f"Loaded {len(formulas)} formulas")
     print("Preprocessing LaTeX formulas...")
-    for formula in formulas:
+    for i, formula in tqdm(enumerate(formulas), total=len(formulas)):
         # Ref: https://github.com/lukas-blecher/LaTeX-OCR/blob/main/pix2tex/dataset/preprocessing/preprocess_formulas.py#L64-L65
         # Replace split, align, etc. with aligned
         formula = re.sub(
@@ -83,8 +85,9 @@ def preprocess_latex():
         )
 
         # Replace \vspace{...} and \hspace{...} with an empty string
-        formula = re.sub(r"\\vspace(\*)?\{[0-9a-zA-Z.~-]*[^}]*\}", "", formula)
-        formula = re.sub(r"\\hspace(\*)?\{[0-9a-zA-Z.~-]*[^}]*\}", "", formula)
+        formula = re.sub(r"\\vspace\s*(\*)?\s*\{[^}]*\}", "", formula)
+        formula = re.sub(r"\\hspace\s*(\*)?\s*\{[^}]*\}", "", formula)
+        formulas[i] = formula
 
     # Save the formulas to a file
     output_file = os.path.join(download_dir, "im2latex_formulas.final.lst")
