@@ -33,7 +33,7 @@ If you don't have PyTorch installed. Follow their instructions [here](https://py
 Install the package `pix2tex`:
 
 ```
-pip install pix2tex[gui]
+pip install "pix2tex[gui]"
 ```
 
 Model checkpoints will be downloaded automatically.
@@ -50,7 +50,13 @@ There are three ways to get a prediction from an image.
 
    If the model is unsure about the what's in the image it might output a different prediction every time you click "Retry". With the `temperature` parameter you can control this behavior (low temperature will produce the same result).
 
-3. You can use an API. This has additional dependencies. Install via `pip install -U pix2tex[api]` and run
+3. You can use an API. This has additional dependencies. Install via `pip install -U "pix2tex[api]"` and run
+
+   ```bash
+   python -m pix2tex.api.run
+   ```
+
+   to start a [Streamlit](https://streamlit.io/) demo that connects to the API at port 8502. There is also a docker image available for the API: https://hub.docker.com/r/lukasblecher/pix2tex [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/lukasblecher/pix2tex?logo=docker)](https://hub.docker.com/r/lukasblecher/pix2tex)
 
    ```bash
    python -m pix2tex.api.run
@@ -94,9 +100,13 @@ Visit here: https://pix2tex.readthedocs.io/
 
 ## Training the model [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lukas-blecher/LaTeX-OCR/blob/main/notebooks/LaTeX_OCR_training.ipynb)
 
+<<<<<<< HEAD
 Install a couple of dependencies `pip install pix2tex[train]`.
 
+1. # First we need to combine the images with their ground truth labels. I wrote a dataset class (which needs further improving) that saves the relative paths to the images with the LaTeX code they were rendered with. To generate the dataset pickle file run
+   Install a couple of dependencies `pip install "pix2tex[train]"`.
 1. First we need to combine the images with their ground truth labels. I wrote a dataset class (which needs further improving) that saves the relative paths to the images with the LaTeX code they were rendered with. To generate the dataset pickle file run
+   > > > > > > > origin/main
 
 ```
 python -m pix2tex.dataset.dataset --equations path_to_textfile --images path_to_images --out dataset.pkl
