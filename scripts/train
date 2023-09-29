@@ -1,73 +1,103 @@
 #!/bin/bash
 
-# Create Virtual Environment
-echo "Creating virtual environment..."
-python3 -m venv venv
-source venv/bin/activate
+# Function to create a virtual environment
+create_virtual_environment() {
+    echo "Creating virtual environment..."
+    python3 -m venv venv
+    source venv/bin/activate
+}
 
-# Install the required packages
-echo "Installing required packages..."
-pip3 install pix2tex[train] gpustat opencv-python-headless wandb
+# Function to install required packages
+install_required_packages() {
+    echo "Installing required packages..."
+    pip3 install pix2tex[train] gpustat opencv-python-headless wandb
+}
 
-echo Checking for GPU
-# Check if gpus are available and if no gpus are available confirm with user to continue
-if [ -z "$(gpustat)" ]; then
-    # Print the following line in red
-    echo -e "\e[31mNo GPUs available. Training will take a long time and you will need to modify the config file to use CPU.\e[0m"
-    read -p "Continue? (y/n) " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        exit 1
+# Function to check for GPU availability
+check_gpu() {
+    echo "Checking for GPU..."
+    if [ -z "$(gpustat)" ]; then
+        # Print a warning message in red
+        echo "No GPUs available. Training will take a long time and you will need to modify the config file to use CPU."
+        read -p "Continue? (y/n) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            exit 1
+        fi
     fi
-fi
+}
 
+# Function to wipe and re-download data
+wipe_and_download_data() {
+    # Check if the data folder exists
+    if [ -d "dataset/data" ]; then
+        read -p "Do you want to wipe existing data? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            rm -rf dataset/data
+        fi
+    fi
 
-read -p "dataset/data folder already exists. Do you want to wipe and re-download the data? (y/n) " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf dataset/data
-    echo Downloading data
-    python3 scripts/download_and_extract_data.py && \
-    echo Reorganizing data for training
-    python3 scripts/reorganize_data.py
-fi
+    # Only download data if it doesn't exist
+    if [ ! -d "dataset/data" ]; then
+        echo "Downloading data..."
+        python3 scripts/download_and_extract_data.py && \
+        echo "Reorganizing data for training..."
+        python3 scripts/reorganize_data.py
+    fi
+    
+}
 
+# Function to generate the tokenizer
+generate_tokenizer() {
+    read -p "Enter the path to the tokenizer's source file (default: dataset/data/train.lst): " input_file
+    if [ -z "$input_file" ]; then
+        input_file="dataset/data/train.lst"
+    fi
 
+    read -p "Enter a name for the tokenizer file (default: train_tokenizer.json): " tokenizer_file
+    if [ -z "$tokenizer_file" ]; then
+        tokenizer_file="train_tokenizer.json"
+    fi
+    python3 -m pix2tex.dataset.dataset --equations "$input_file" --vocab-size 8000 --out custom/"$tokenizer_file"
+}
 
-# Generate the tokenizer
-read -p "Enter the path to the input file (default: dataset/data/train.lst): " input_file
-if [ -z "$input_file" ]; then
-    input_file="dataset/data/train.lst"
-fi
+# Function to set up the experiment
+setup_experiment() {
+    read -p "Enter a unique name for the experiment (default: train_tok): " experiment_name
+    if [ -z "$experiment_name" ]; then
+        experiment_name="train_tok"
+    fi
 
-# Read input for tokenizer file, if it is not present use the default tokenizer file
-read -p "Enter the path to the tokenizer file (default: custom/train_tokenizer.json): " tokenizer_file
-if [ -z "$tokenizer_file" ]; then
-    tokenizer_file="train_tokenizer.json"
-fi
-python3 -m pix2tex.dataset.dataset --equations $input_file --vocab-size 8000 --out custom/$tokenizer_file
+    train_pkl="$experiment_name"_train.pkl
+    val_pkl="$experiment_name"_val.pkl
+    echo "Training and validation files will be saved as $train_pkl and $val_pkl in the dataset/data folder. Please ensure the config uses the path to these files for data and valdata."
 
-# Ask for a unique name for the experiment
-read -p "Enter a unique name for the experiment (default: pix2tex): " experiment_name
-if [ -z "$experiment_name" ]; then
-    experiment_name="pix2tex"
-fi
+    echo "Generate Lukas dataloader files..."
+    python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/"$train_pkl" -t custom/"$tokenizer_file"
+    python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/"$val_pkl" -t custom/"$tokenizer_file"
+}
 
-train_pkl=$experiment_name"_train.pkl"
-val_pkl=$experiment_name"_val.pkl"
+# Function to start training
+start_training() {
+    read -p "Enter the path to the config file (default: custom/train_tok_config.yaml): " config_file
+    if [ -z "$config_file" ]; then
+        config_file="custom/train_tok_config.yaml"
+    fi
 
-# Generate the dataset
-echo Generate Lukas dataloader files
-python3 -m pix2tex.dataset.dataset -i dataset/data/train -e dataset/data/train.lst -o dataset/data/$train_pkl -t custom/$tokenizer_file
-python3 -m pix2tex.dataset.dataset -i dataset/data/val -e dataset/data/val.lst -o dataset/data/$val_pkl -t custom/$tokenizer_file
+    echo "Using config file: $config_file"
+    echo "Training..."
+    python3 -m pix2tex.train --config "$config_file"
 
+    echo "Training complete. Checkpoints are saved in the checkpoints folder."
+}
 
-# Training
-read -p "Enter the path to the config file (default: custom/train_tok_config.yaml): " config_file
-if [ -z "$config_file" ]; then
-    config_file="custom/train_tok_config.yaml"
-fi
+# Main script
 
-echo Using config file: $config_file
-echo Training
-python3 -m pix2tex.train --config $config_file
+create_virtual_environment
+install_required_packages
+check_gpu
+wipe_and_download_data
+generate_tokenizer
+setup_experiment
+start_training
