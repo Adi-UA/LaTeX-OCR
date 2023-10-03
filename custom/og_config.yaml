@@ -18,7 +18,7 @@
   dim: 256,
   encoder_depth: 4,
   eos_token: 2,
-  epochs: 5,
+  epochs: 50,
   gamma: 0.9995,
   heads: 8,
   id: null,
