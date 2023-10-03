@@ -59,9 +59,8 @@ unzip_and_split_data() {
 # Function to combine files and generate a tokenizer
 generate_tokenizer() {
     echo "Combining files and generating tokenizer"
-    cat dataset/data/CROHME_math.txt > dataset/data/all_math.txt
-    cat dataset/data/pdfmath.txt >> dataset/data/all_math.txt
-    python3 -m pix2tex.dataset.dataset --equations dataset/data/all_math.txt --vocab-size 8000 --out custom/"$tokenizer_name"
+    python3 scripts/create_train_equations_list.py
+    python3 -m pix2tex.dataset.dataset --equations dataset/data/all_train_equations.txt --vocab-size 8000 --out custom/"$tokenizer_name"
 }
 
 # Function to reorganize data for training
