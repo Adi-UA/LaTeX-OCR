@@ -43,21 +43,21 @@ fetch_data() {
 }
 
 # Function to unzip data
-unzip_data() {
+unzip_and_split_data() {
     echo "Unzipping data"
     cd dataset/data
     unzip -q crohme.zip 
     unzip -q pdf.zip 
+
     # Split handwritten data into val set and train set
     cd images
     mkdir ../valimages
-    ls | shuf -n 1000 | xargs -i mv {} ../valimages
     cd ../../..
+    python3 scripts/shuffle_data.py --config $config_file
 }
 
 # Function to combine files and generate a tokenizer
 generate_tokenizer() {
-    tokenizer_name="og_tokenizer.json"
     echo "Combining files and generating tokenizer"
     cat dataset/data/CROHME_math.txt > dataset/data/all_math.txt
     cat dataset/data/pdfmath.txt >> dataset/data/all_math.txt
@@ -66,10 +66,6 @@ generate_tokenizer() {
 
 # Function to reorganize data for training
 reorganize_data_for_training() {
-    experiment_name="original_b32"
-    train_pkl="$experiment_name"_train.pkl
-    val_pkl="$experiment_name"_val.pkl
-
     echo Reorganizing training data
     python3 -m pix2tex.dataset.dataset -i dataset/data/images dataset/data/train -e dataset/data/CROHME_math.txt dataset/data/pdfmath.txt -o dataset/data/$train_pkl -t custom/$tokenizer_name
     
@@ -79,17 +75,22 @@ reorganize_data_for_training() {
 
 # Function to start training
 start_training() {
-    config_file="custom/original_b32_config.yaml"
     echo "Training"
     python3 -m pix2tex.train --config $config_file
 }
 
 # Main script execution
+config_file="custom/og_config.yaml"
+experiment_name="og"
+train_pkl="$experiment_name"_train.pkl
+val_pkl="$experiment_name"_val.pkl
+tokenizer_name="og_tokenizer.json"
+
 create_and_activate_venv
 install_required_packages
 check_gpu
 fetch_data
-unzip_data
+unzip_and_split_data
 generate_tokenizer
 reorganize_data_for_training
 start_training
