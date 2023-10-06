@@ -79,10 +79,14 @@ if __name__ == "__main__":
     results_dir = os.path.join(project_dir, "results")
 
     # Save results
-    with open(os.path.join(results_dir, "im2latex100k_test_results.json"), "w") as f:
+    with open(
+        os.path.join(results_dir, "lukas_im2latex100k_test_results.json"), "w"
+    ) as f:
         json.dump(all_results, f, indent=4)
 
-    with open(os.path.join(results_dir, "im2latex100k_test_errors.json"), "w") as f:
+    with open(
+        os.path.join(results_dir, "lukas_im2latex100k_test_errors.json"), "w"
+    ) as f:
         json.dump(all_errors, f, indent=4)
 
     end_time = time.perf_counter()
