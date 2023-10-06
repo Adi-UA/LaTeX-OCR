@@ -46,7 +46,7 @@ if __name__ == "__main__":
     # Load model
     custom_config = custom_arguments = {
         "config": os.path.join(project_dir, "custom/train_tok_config.yaml"),
-        "checkpoint": os.path.join(project_dir, "custom_checkpoints/best_model.pth"),
+        "checkpoint": os.path.join(project_dir, "custom_checkpoints/model.pth"),
         "tokenizer": os.path.join(project_dir, "custom/train_tokenizer.json"),
         "no_cuda": True,
         "no_resize": False,
@@ -79,14 +79,10 @@ if __name__ == "__main__":
     results_dir = os.path.join(project_dir, "results")
 
     # Save results
-    with open(
-        os.path.join(results_dir, "im2latex100k_test_results.json"), "w"
-    ) as f:
+    with open(os.path.join(results_dir, "im2latex100k_test_results.json"), "w") as f:
         json.dump(all_results, f, indent=4)
 
-    with open(
-        os.path.join(results_dir, "im2latex100k_test_errors.json"), "w"
-    ) as f:
+    with open(os.path.join(results_dir, "im2latex100k_test_errors.json"), "w") as f:
         json.dump(all_errors, f, indent=4)
 
     end_time = time.perf_counter()
