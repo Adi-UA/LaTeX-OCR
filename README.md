@@ -1,6 +1,6 @@
 # pix2tex - LaTeX OCR
 
-This is a fork of [lukas-blecher/LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR) that retrains the model on the [normalized Im2latex-100k dataset](https://im2markup.yuntiandeng.com/data/) that has been put through [some additional preprocessing](https://github.com/Adi-UA/LaTeX-OCR/blob/adi/reproduce/scripts/download_and_extract_data.py#L64-L90).
+This is a fork of [lukas-blecher/LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR) that retrains the model on the [normalized Im2latex-100k dataset](https://im2markup.yuntiandeng.com/data/) that has been put through [some additional preprocessing](https://github.com/Adi-UA/LaTeX-OCR/blob/main/scripts/download_and_extract_data.py#L64-L90).
 
 ## Training
 
