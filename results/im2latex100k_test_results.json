@@ -1,0 +1,122 @@
+{
+    "7944775fc9": [
+        "\\alpha _ { 1 } ^ { r } \\gamma _ { 1 } + \\dots + \\alpha _ { N } ^ { r } \\gamma _ { N } = 0 \\quad ( r = 1 , . . . , R ) \\; ,\n",
+        "s_{1}\\gamma_{1}+\\ldots+\\alpha_{N}^{s}\\gamma_{N}=0\\quad(r=1,...,R)\\;,"
+    ],
+    "78228211ca": [
+        "\\eta = - \\frac { 1 } { 2 } \\operatorname { l n } \\left( \\frac { \\operatorname { c o s h } \\left( \\sqrt { 2 } b _ { \\infty } \\sqrt { 1 + \\alpha ^ { 2 } } \\; y - \\mathrm { a r c s i n h } \\; \\alpha \\right) } { \\sqrt { 1 + \\alpha ^ { 2 } } } \\right)\n",
+        "t=-\\frac{1}{2}\\operatorname{ln}\\left(\\frac{\\operatorname{cosh}\\left(\\sqrt{2}b_{\\infty}\\sqrt{1+\\alpha^{2}}~y-\\operatorname{sin}\\alpha\\right)}{\\sqrt{1+\\alpha^{2}}}\\right)"
+    ],
+    "15b9034ba8": [
+        "P _ { ( 2 ) } ^ { - } = \\int \\beta d \\beta d ^ { 9 } p d ^ { 8 } \\lambda \\Phi ( - p , - \\lambda ) \\left( - \\frac { p ^ { I } p ^ { I } } { 2 \\beta } \\right) \\Phi ( p , \\lambda ) \\, .\n",
+        "I_{(2)}^{-}=\\int\\beta d\\beta d^{0}p d^{8}\\lambda\\Phi(-p,-\\lambda)\\left(-{\\frac{p^{I}p^{I}}{2\\beta}}\\right)\\Phi(p,\\lambda)\\,."
+    ],
+    "6968dfca15": [
+        "\\Gamma ( z + 1 ) = \\int _ { 0 } ^ { \\infty } \\, \\, d x \\, \\, e ^ { - x } x ^ { z } .\n",
+        "\\Gamma(z+1)=\\int_{0}^{\\infty}~d x\\;e^{-x}x^{z}."
+    ],
+    "6cead0df53": [
+        "\\frac { d } { d s } { \\bf C } _ { i } = \\frac { 1 } { 2 } \\epsilon _ { i j k } { \\bf C } _ { j } \\times { \\bf C } _ { k } \\, .\n",
+        "\\frac{d}{d s}\\,{\\bf C}_{i}=\\frac{1}{2}\\epsilon_{i j k}{\\bf C}_{j}\\times{\\bf C}_{k}."
+    ],
+    "5381b22df4": [
+        "Z = \\sum _ { s p i n s } \\prod _ { c u b e s } W ( a | e , f , g | b , c , d | h ) ,\n",
+        "Z=\\sum_{s p i n s\\mathrm{\\scriptsize{~red}~g e o h t0}}\\overline{{W}}(a|e,f;g|b,c,d|h),"
+    ],
+    "27f2b37ce9": [
+        "\\left\\{ Q ^ { i } , Q ^ { j } \\right\\} = c ^ { i j } \\Gamma ^ { M } C P _ { M } + C c ^ { i j } Z ,\n",
+        "\\langle Q^{i},Q^{j}\\rangle=c^{i j}\\Gamma^{M}C P_{M}+C c^{i j}Z"
+    ],
+    "51a257cdf5": [
+        "\\breve { c } _ { n , \\nu } = \\sum _ { m = n } ^ { 2 n } { \\frac { \\Gamma \\left( \\nu + m - { \\frac { D - 1 } { 2 } } \\right) } { \\Gamma \\left( \\nu + n - { \\frac { D - 1 } { 2 } } \\right) } } ~ \\breve { a } _ { 2 ( m - n ) , m } ~ ~ ~ .\n",
+        "{\\mathsf{\\varepsilon}}_{n,\\nu}=\\sum_{m=n}^{2n}\\frac{\\Gamma\\left(\\nu+m-\\frac{D-1}{2}\\right)}{\\Gamma\\left(\\nu+n-\\frac{D-1}{2}\\right)}\\,\\,\\delta_{2(m-n),m}\\quad."
+    ],
+    "5108925e21": [
+        "R ( g ) = - f \\left[ 3 \\left[ ( \\operatorname { l n } f ) ^ { \\prime } \\right] ^ { 2 } + \\frac { \\Lambda ( x ^ { 5 } ) } { M ^ { 3 } } \\right] \\; ,\n",
+        "R(g)=-f\\left[3\\left(\\operatorname{ln}f\\right)^{\\prime}\\right]^{2}+\\frac{\\Lambda(x^{5})}{M^{3}}\\right]~,"
+    ],
+    "3882dd3d43": [
+        "{ \\frac { d } { d s } } { \\frac { 1 } { \\Gamma ( - s ) } } \\bigg | _ { s = 0 } = - 1 ,\n",
+        "\\frac{d}{d s}\\frac{1}{\\Gamma(-s)}\\biggr\\vert_{s=0}=-1,"
+    ],
+    "566cf0c6f5": [
+        "\\dot { z } _ { 1 } = - N ^ { z } ( z _ { 1 } ) = - g ( z _ { 1 } ) = - \\frac { z _ { 1 } } { P _ { z } ( z _ { 2 } - z _ { 1 } ) } ; ~ ~ ~ \\dot { z } _ { 2 } = - \\frac { z _ { 2 } } { P _ { z } ( z _ { 2 } - z _ { 1 } ) }\n",
+        "\\dot{z}_{1}=-N^{z}(z_{1})=-g(z_{1})=-\\frac{z_{1}}{P_{z}(z_{2}-z_{1})};\\;\\;\\;\\dot{z}_{2}=-\\frac{z_{2}}{P_{z}(z_{2}-z_{1})}"
+    ],
+    "7d1fe2cc05": [
+        "c _ { \\alpha } = \\sum _ { \\beta \\in \\Lambda _ { R } } \\epsilon ( \\alpha , \\beta ) | \\beta + \\bar { p } > < \\beta + \\bar { p } |\n",
+        "\\displaystyle_{\\sum_{\\beta\\in\\Lambda_{R}}}\\epsilon(\\alpha,\\beta)|\\beta+\\bar{p}><\\beta+\\bar{p}|"
+    ],
+    "450b24df87": [
+        "{ \\cal L } = - { \\frac { 1 } { 4 } } F _ { \\mu \\nu } F ^ { \\mu \\nu } + { \\bar { \\psi } } ( i \\gamma ^ { \\mu } D _ { \\mu } - m ) \\psi \\, ,\n",
+        "{\\cal L}=-\\frac{1}{4}F_{\\mu\\nu}F^{\\mu\\nu}+\\bar{\\psi}(i\\gamma^{\\mu}D_{\\mu}-m)\\psi\\,,"
+    ],
+    "667ff49bc5": [
+        "e ^ { i { \\bf k \\cdot r } } = e ^ { i k r \\operatorname { c o s } ( \\theta - \\Theta ) } = \\sum _ { l = - \\infty } ^ { \\infty } i ^ { l } \\, J _ { l } ( k r ) \\, e ^ { i l ( \\theta - \\Theta ) } \\, ,\n",
+        "\\mathrm{w}.e=e^{i k r\\operatorname{cos}(\\theta-\\alpha)}=\\displaystyle\\sum_{l=-\\infty}^{\\infty}i^{l}J_{l}(k r)\\,e^{i l(\\theta-\\psi)}\\,,"
+    ],
+    "61928de22b": [
+        "i \\sqrt { 2 } \\partial _ { - } \\chi - g [ \\phi , \\psi ] = 0 , \\quad \\partial _ { - } ^ { 2 } \\bar { A } _ { + } - g ^ { 2 } J ^ { + } = 0 .\n",
+        "6\\sqrt{2}\\partial_{-}\\chi-g[\\phi,\\psi]=0,\\quad\\partial_{-}^{2}\\bar{A}_{+}-g^{2}J^{+}=0."
+    ],
+    "4cd65285c9": [
+        "\\Omega _ { k } ^ { ( l ) } = \\sum _ { s = 0 } \\int d ^ { 3 } y \\left( ( - 1 ) ^ { s + 1 } \\frac { d ^ { s } } { d t ^ { s } } \\phi _ { k } ^ { i ( s ) } ( x , y ) L _ { i } ^ { ( 0 ) } ( y ) \\right) .\n",
+        "\\Omega_{k}^{(l)}=\\sum_{s=0}\\int d^{3}y\\left((-1)^{s+1}\\frac{d^{s}}{d t^{s}}\\phi_{k}^{i(s)}(x,y)L_{i}^{(0)}(y)\\right)."
+    ],
+    "12697ce419": [
+        "L _ { g } ^ { ' } \\Bigl ( v ( h ) \\Bigr ) = v ( L _ { g } h ) = v ( g h ) \\, , \\, \\, \\, \\forall g , h \\in G ,\n",
+        "L_{g}^{\\prime}(v(h))=v(L_{g}h)=v(g h)\\,,\\,\\,\\,\\forall g,h\\in G,"
+    ],
+    "a8ec0c091c": [
+        "\\xi ^ { 2 } = \\left( \\frac { \\varepsilon _ { 1 } - \\varepsilon _ { 2 } } { \\varepsilon _ { 1 } + \\varepsilon _ { 2 } } \\right) ^ { 2 } = \\left( \\frac { \\mu _ { 1 } - \\mu _ { 2 } } { \\mu _ { 1 } + \\mu _ { 2 } } \\right) ^ { 2 } ,\n",
+        "\\xi^{2}=\\left(\\frac{\\varepsilon_{1}-\\varepsilon_{2}}{\\varepsilon_{1}+\\varepsilon_{2}}\\right)^{2}=\\left(\\frac{\\mu_{1}-\\mu_{2}}{\\mu_{1}+\\mu_{2}}\\right)^{2},"
+    ],
+    "72a80f57d9": [
+        "R ( e _ { 1 } ) = \\epsilon ^ { - J _ { 6 7 } + J _ { 8 9 } } , \\quad R ( e _ { 2 } ) = \\epsilon ^ { J _ { 4 5 } - J _ { 8 9 } } .\n",
+        "\\mathcal{H}(e_{1})=\\epsilon^{-\\beta\\nu\\pi\\cdot\\nu\\alpha},\\quad R(e_{2})=\\epsilon^{\\mu\\alpha^{-}S\\alpha}."
+    ],
+    "330f27c566": [
+        "{ \\tilde { \\cal { E } } } _ { m < 0 } = { \\cal { E } } _ { m < 0 } ( B ) - { \\cal { E } } ( 0 ) = \\frac { B ^ { 2 } } { 2 } + \\frac { ( e B ) ^ { \\frac { 3 } { 2 } } } { 2 \\pi } g \\left( \\frac { e B } { m ^ { 2 } } \\right) \\, ,\n",
+        "{\\tilde{\\cal E}}_{m<0}={\\cal E}_{m<0}(B)-{\\cal E}(0)=\\frac{B^{2}}{2}+\\frac{(e B)^{\\frac{2}{2}}}{2\\pi}g\\left(\\frac{e B}{m^{2}}\\right)\\,,"
+    ],
+    "58be3470dc": [
+        "\\hat { O } _ { 2 } ^ { r } \\mid 1 > _ { ( 0 ) } = { O } _ { 2 } ^ { r } \\mid 0 > _ { ( 0 ) } .\n",
+        "\\mathcal{O}_{2}^{r}\\mid1>_{(0)}=\\mathcal{O}_{2}^{r}\\mid0>_{(0)}."
+    ],
+    "3e82680317": [
+        "I ^ { c } = \\mp { \\frac { \\pi b \\sqrt { 1 - \\Lambda a ^ { 2 } } } { 2 G } } \\ \\ ,\n",
+        "\\dot{\\bf r}=\\mp\\frac{\\pi b\\sqrt{1-\\Lambda a^{2}}}{2G}\\;\\;,"
+    ],
+    "31068cb86d": [
+        "g _ { n } ^ { > } ( r , r ^ { \\prime } ) = E _ { n } K _ { | n / \\alpha | } ( \\beta r ) , \\quad \\mathrm { f o r ~ r > r ^ { ' } ~ . }\n",
+        "g_{n}^{\\ast}(r,r^{\\prime})=E_{n}K_{|n/\\alpha|}(\\beta r),\\quad\\mathrm{for~r>r^{\\prime}~.}"
+    ],
+    "431dd6944e": [
+        "R ^ { \\frac { 1 } { 2 } } ( \\theta ) _ { \\left| \\left. a _ { k } \\dots \\frac { 1 } { 2 } , a _ { 1 } , \\frac { 1 } { 2 } \\right| n _ { k } \\dots , m _ { 1 } , n _ { 1 } \\right\\rangle } ^ { \\left| \\left. b _ { k } \\dots \\frac { 1 } { 2 } , b _ { 1 } , \\frac { 1 } { 2 } \\right| n _ { k } \\dots , m _ { 1 } , n _ { 1 } \\right\\rangle } = R _ { a _ { 1 } b _ { 1 } } ^ { \\frac { 1 } { 2 } } ( \\theta ) \\prod _ { i = 1 } ^ { k - 1 } f _ { b _ { i } b _ { i + 1 } } ^ { a _ { i } a _ { i + 1 } } ( w _ { m _ { i } } , \\nu _ { n _ { i + 1 } } , \\theta )\n",
+        "\\begin{array}{l}{{\\mathrm{\\scriptsize~k=0}}\\{\\theta\\}}\\\\ {\\mathrm{\\scriptsize~les}}\\\\ {\\mathrm{\\scriptsize~les}}\\\\ {\\mathrm{\\scriptsize~les}\\pm\\frac{1}{2}\\alpha_{1}\\pm\\frac{m_{1}}{2}\\left[i_{k}\\right]}\\\\ \\end{array}\\right]=R_{\\bf{k|s}}^{\\frac{1}{2}}(\\theta)\\prod_{i=1}^{\\mathrm{\\scriptscriptstyle{k~leat}}}(w_{m_{i}},\\nu_{n_{i+1}},\\bf p},)"
+    ],
+    "54a7b9d7f8": [
+        "Q _ { 1 } ^ { a b } ( x , y ) \\equiv Q _ { 1 } ^ { a b } + x \\, J _ { 1 } ^ { a b } + y \\, K _ { 1 } ^ { a b } ,\n",
+        "Q_{1}^{a}(x,y)\\equiv Q_{1}^{a b}+x J_{1}^{a b}+y\\,K_{1}^{a b},"
+    ],
+    "632e971eb8": [
+        "\\left\\{ \\begin{array} { c } { \\partial _ { \\tau } R + \\vec { \\nabla } \\cdot \\left( \\vec { \\nabla } \\Theta \\, \\sqrt { \\displaystyle \\frac { R ^ { 2 } + a ^ { 2 } } { 1 + ( \\vec { \\nabla } \\Theta ) ^ { 2 } } } \\right) = 0 , \\hfill } \\\\ { \\partial _ { \\tau } \\Theta + R \\sqrt { \\displaystyle \\frac { 1 + ( \\vec { \\nabla } \\Theta ) ^ { 2 } } { R ^ { 2 } + a ^ { 2 } } } = 0 . \\hfill } \\\\ \\end{array} \\right.\n",
+        "\\left\\{\\begin{array}{c}{\\partial_{\\tau}R+\\bar{\\nabla}\\cdot\\left(\\bar{\\nabla}\\Theta\\right)\\left[\\frac{R^{2}+a^{2}}{1+\\left(\\bar{\\nabla}\\Theta\\right)^{2}}\\right]=0,}\\\\ {\\partial_{\\tau}\\Theta+R\\left(\\frac{\\nabla\\Theta}{\\sqrt{\\Theta}}\\right)^{2}}\\\\ \\end{array}\\right]=0,"
+    ],
+    "399e18a85c": [
+        "\\Delta ^ { ( N , 0 ) } ( s ) = - \\sum _ { n > 0 , \\vec { n } ^ { 2 } < N } \\left[ J ( z _ { n } ) - 2 + 2 J ( y _ { n } ) + \\frac { J ^ { 2 } ( y _ { n } ) } { 2 ( 1 - y _ { n } ) } - J ( \\tilde { z } _ { n } ) - 2 J ( \\tilde { y } _ { n } ) \\right] \\ ,\n",
+        "\\Delta^{(N,0)}(s)=-\\sum_{n>0,\\pi^{\\prime}<N}\\left[J(z_{n})-2+2J(y_{n})+\\frac{J^{\\prime}(y_{n})}{2(1-y_{n})}-2J(\\tilde{y}_{n})\\right]\\ ,"
+    ],
+    "707b5988e2": [
+        "\\left\\{ \\Psi \\circ \\mu , f \\right\\} = ( \\overline { X } _ { i } f ) \\, ( Y ^ { i } \\Psi ) \\circ \\mu \\, ,\n",
+        "|\\Psi\\circ\\mu,f\\rangle=(X_{i}f)\\,(Y^{\\dagger}Psi)\\circ\\mu\\,,"
+    ],
+    "25fe4d51bf": [
+        "F _ { n } ^ { \\mathcal { O } | \\mu _ { 1 } \\ldots \\mu _ { n } } ( \\theta _ { 1 } + \\lambda , \\ldots , \\theta _ { n } + \\lambda ) = e ^ { s \\lambda } F _ { n } ^ { \\mathcal { O } | \\mu _ { 1 } \\ldots \\mu _ { n } } ( \\theta _ { 1 } , \\ldots , \\theta _ { n } ) \\, \\, ,\n",
+        "\\tau_{n}^{\\xi_{1}\\mu_{1}\\ldots\\mu_{n}}(\\theta_{1}+\\lambda,\\ldots,\\theta_{n}+\\lambda)=e^{\\varepsilon_{3}}F_{n}^{\\xi_{2}\\mu_{1}\\ldots\\mu_{n}}(\\theta_{1},\\ldots,\\theta_{n})\\ ,"
+    ],
+    "3dc7799669": [
+        "S = S _ { P h y s . } ( \\Phi ^ { a } , \\Phi ^ { \\ast a } ) + S _ { T } ( \\vartheta ^ { b } , \\vartheta ^ { \\ast b } , c ^ { \\alpha } )\n",
+        "S=S_{P h y s}(\\Phi^{a},\\Phi^{a n})+S_{T}(\\vartheta^{b},\\vartheta^{a},c^{\\alpha})"
+    ]
+}
