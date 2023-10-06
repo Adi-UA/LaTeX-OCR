@@ -35,7 +35,7 @@ def collect_predictions(pid: int, test_data: list, model: LatexOCR):
                 prediction = model(img)
                 results[img_name.rstrip(".png")] = (ground_truth, prediction)
             except Exception as e:
-                errors[img_name.rstrip(".png")] = e
+                errors[img_name.rstrip(".png")] = str(e)
         else:
             print(f"({pid}) Image {img_path} does not exist. Skipping.")
 
@@ -80,12 +80,12 @@ if __name__ == "__main__":
 
     # Save results
     with open(
-        os.path.join(results_dir, "lukas_im2latex100k_test_results.json"), "w"
+        os.path.join(results_dir, "im2latex100k_test_results.json"), "w"
     ) as f:
         json.dump(all_results, f, indent=4)
 
     with open(
-        os.path.join(results_dir, "lukas_im2latex100k_test_errors.json"), "w"
+        os.path.join(results_dir, "im2latex100k_test_errors.json"), "w"
     ) as f:
         json.dump(all_errors, f, indent=4)
 
