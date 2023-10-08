@@ -33,8 +33,10 @@ def collect_predictions(pid: int, test_data: list, model: LatexOCR):
                 ground_truth = formulae[line_no]
                 img = Image.open(img_path)
                 prediction = model(img)
-                results[img_name.rstrip(".png")]["latex"] = prediction
-                results[img_name.rstrip(".png")]["ground_truth"] = ground_truth
+                results[img_name.rstrip(".png")] = {
+                    "ground_truth": ground_truth,
+                    "prediction": prediction,
+                }
             except Exception as e:
                 errors[img_name.rstrip(".png")] = str(e)
         else:
