@@ -6,28 +6,34 @@ The [details of my best run can be found on Weights & Biases](https://wandb.ai/a
 
 ## Testing
 
-Follow the original repo's instructions to install the required packages in your Python environment. You do not need to install anything if you ran the training script since it would have already done it for you.
+1. Create the virtual environment and install the required packages if you haven't already (or the training script would have done it for you):
 
-Then, download and place the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) in the `custom_checkpoints` directory, in a Python file do:
+   ```bash
+   python3 -m venv venv && \
+   pip3 install pix2tex[train] gpustat opencv-python-headless wandb && \
+   source ./venv/bin/activate # or .\venv\Scripts\activate on Windows
+   ```
 
-```python
-from munch import Munch
-from PIL import Image
+2. Then, download and place the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) in the `custom_checkpoints` directory, in a Python file do:
 
-from pix2tex.cli import LatexOCR
+   ```python
+   from munch import Munch
+   from PIL import Image
 
-custom_config = custom_arguments = {
-   "config": os.path.join(project_dir, "custom/train_tok_config.yaml"),
-   "checkpoint": os.path.join(project_dir, "custom_checkpoints/model.pth"),
-   "tokenizer": os.path.join(project_dir, "custom/train_tokenizer.json"),
-   "no_cuda": True,
-   "no_resize": False,
-}
-model = LatexOCR(Munch(custom_config))
-img = Image.open("path/to/image.png")
-prediction = model(img)
-print(prediction)
-```
+   from pix2tex.cli import LatexOCR
+
+   custom_config = custom_arguments = {
+      "config": os.path.join(project_dir, "custom/train_tok_config.yaml"),
+      "checkpoint": os.path.join(project_dir, "custom_checkpoints/model.pth"),
+      "tokenizer": os.path.join(project_dir, "custom/train_tokenizer.json"),
+      "no_cuda": True,
+      "no_resize": False,
+   }
+   model = LatexOCR(Munch(custom_config))
+   img = Image.open("path/to/image.png")
+   prediction = model(img)
+   print(prediction)
+   ```
 
 ## Training
 
