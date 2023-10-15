@@ -2,6 +2,33 @@
 
 This is a fork of [lukas-blecher/LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR) that retrains the model on the [normalized Im2latex-100k dataset](https://im2markup.yuntiandeng.com/data/) that has been put through [some additional preprocessing](https://github.com/Adi-UA/LaTeX-OCR/blob/main/scripts/download_and_extract_data.py#L64-L90).
 
+The [details of my best run can be found on Weights & Biases](https://wandb.ai/adioss/LaTeX-OCR/runs/gzcrm3f6) and the [corresponding best model checkpoint can be downloaded from here](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing).
+
+## Testing
+
+Follow the original repo's instructions to install the required packages in your Python environment. You do not need to install anything if you ran the training script since it would have already done it for you.
+
+Then, download and place the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) in the `custom_checkpoints` directory, in a Python file do:
+
+```python
+from munch import Munch
+from PIL import Image
+
+from pix2tex.cli import LatexOCR
+
+custom_config = custom_arguments = {
+   "config": os.path.join(project_dir, "custom/train_tok_config.yaml"),
+   "checkpoint": os.path.join(project_dir, "custom_checkpoints/model.pth"),
+   "tokenizer": os.path.join(project_dir, "custom/train_tokenizer.json"),
+   "no_cuda": True,
+   "no_resize": False,
+}
+model = LatexOCR(Munch(custom_config))
+img = Image.open("path/to/image.png")
+prediction = model(img)
+print(prediction)
+```
+
 ## Training
 
 ```
@@ -10,7 +37,7 @@ This is a fork of [lukas-blecher/LaTeX-OCR](https://github.com/lukas-blecher/LaT
 
 The script will create a virtual environment, download and prepare the data, create the tokenizer and then start training. It will prompt you to enter the paths to the various files required for training. It has default values for the paths, so you can just press enter to use those too.
 
-The default parameters are the same ones I used to train our best model with a BLEU score of 0.87. You can change them by editing the `train_tok_config.yaml` file in the `custom` directory. The [details of my best run can be found on Weights & Biases](https://wandb.ai/adioss/LaTeX-OCR/runs/gyw8zmtv) and the [corresponding best model checkpoint can be downloaded from here](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing).
+The default parameters are the same ones I used to train our best model with a BLEU score of 0.87. You can change them by editing the `train_tok_config.yaml` file in the `custom` directory.
 
 ## Results
 
