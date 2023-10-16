@@ -58,7 +58,8 @@ The results of our best model on the test set have been saved to the `results` d
    ```
 
 2. Download the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) and put in in the `custom_checkpoints` directory.
-3. Run the evaluation script:
+3. Removed the preprocessing on line 135 of `venv/lib/python3.11/site-packages/pix2tex/cli.py` (or `venv\Lib\site-packages\pix2tex\cli.py` on Windows or wherever your _installed_ `pix2tex` package is located).
+4. Run the evaluation script:
    ```bash
    python3 scripts/get_im2latex100k_test_results.py
    ```
