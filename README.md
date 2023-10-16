@@ -10,8 +10,9 @@ The [details of my best run can be found on Weights & Biases](https://wandb.ai/a
 
    ```bash
    python3 -m venv venv && \
-   pip3 install pix2tex[train] gpustat opencv-python-headless wandb && \
-   source ./venv/bin/activate # or .\venv\Scripts\activate on Windows
+   source ./venv/bin/activate  && \
+   pip3 install gpustat==1.1.1 wandb==0.15.12 && \
+   pip3 install -e .[train]
    ```
 
 2. Then, download and place the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) in the `custom_checkpoints` directory, in a Python file do:
@@ -53,13 +54,13 @@ The results of our best model on the test set have been saved to the `results` d
 
    ```bash
    python3 -m venv venv && \
-   pip3 install pix2tex[train] gpustat opencv-python-headless wandb && \
-   source ./venv/bin/activate # or .\venv\Scripts\activate on Windows
+   source ./venv/bin/activate  && \
+   pip3 install gpustat==1.1.1 wandb==0.15.12 && \
+   pip3 install -e .[train]
    ```
 
 2. Download the [best model checkpoint](https://drive.google.com/drive/folders/1_i6vDSnAJT0d_j0uILBNlQgZPCrcUBze?usp=sharing) and put in in the `custom_checkpoints` directory.
-3. Removed the preprocessing on line 135 of `venv/lib/python3.11/site-packages/pix2tex/cli.py` (or `venv\Lib\site-packages\pix2tex\cli.py` on Windows or wherever your _installed_ `pix2tex` package is located).
-4. Run the evaluation script:
+3. Run the evaluation script:
    ```bash
    python3 scripts/get_im2latex100k_test_results.py
    ```

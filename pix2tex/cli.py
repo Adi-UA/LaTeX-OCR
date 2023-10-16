@@ -186,10 +186,6 @@ class LatexOCR:
             im.to(self.args.device), temperature=self.args.get("temperature", 0.25)
         )
         pred = token2str(dec, self.tokenizer)[0]
-        try:
-            clipboard.copy(pred)
-        except:
-            pass
         return pred
 
 
