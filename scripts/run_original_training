@@ -10,23 +10,9 @@ create_and_activate_venv() {
 # Function to install required packages
 install_required_packages() {
     echo "Installing required packages..."
-    pip3 install gdown pix2tex[train] gpustat opencv-python-headless wandb
+    pip3 install gdown wandb==0.15.12
+    pip3 install -e .[train]
 }
-
-# Function to check for GPU availability
-check_gpu() {
-    echo "Checking for GPU..."
-    if [ -z "$(gpustat)" ]; then
-        # Print a warning message in red
-        echo "No GPUs available. Training will take a long time and you will need to modify the config file to use CPU."
-        read -p "Continue? (y/n) " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
-    fi
-}
-
 
 # Function to fetch data
 fetch_data() {
@@ -87,7 +73,6 @@ tokenizer_name="og_tokenizer.json"
 
 create_and_activate_venv
 install_required_packages
-check_gpu
 fetch_data
 unzip_and_split_data
 generate_tokenizer
