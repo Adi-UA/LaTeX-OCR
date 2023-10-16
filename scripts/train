@@ -10,7 +10,8 @@ create_virtual_environment() {
 # Function to install required packages
 install_required_packages() {
     echo "Installing required packages..."
-    pip3 install pix2tex[train] gpustat opencv-python-headless wandb
+    pip3 install gpustat==1.1.1 wandb==0.15.12
+    pip3 install -e .[train]
 }
 
 # Function to check for GPU availability

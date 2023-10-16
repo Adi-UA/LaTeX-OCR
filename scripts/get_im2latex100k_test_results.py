@@ -33,9 +33,12 @@ def collect_predictions(pid: int, test_data: list, model: LatexOCR):
                 ground_truth = formulae[line_no]
                 img = Image.open(img_path)
                 prediction = model(img)
-                results[img_name.rstrip(".png")] = (ground_truth, prediction)
+                results[img_name.rstrip(".png")] = {
+                    "ground_truth": ground_truth,
+                    "prediction": prediction,
+                }
             except Exception as e:
-                errors[img_name.rstrip(".png")] = e
+                errors[img_name.rstrip(".png")] = str(e)
         else:
             print(f"({pid}) Image {img_path} does not exist. Skipping.")
 
@@ -43,22 +46,11 @@ def collect_predictions(pid: int, test_data: list, model: LatexOCR):
 
 
 if __name__ == "__main__":
-    test_data = test_data[:5]
-
-    # Move custom tokenizer to project directory if it exists
-    if os.path.exists(os.path.join(project_dir, "custom/tokenizer.json")):
-        print("Custom tokenizer found. Using custom tokenizer.")
-        shutil.copy(
-            os.path.join(project_dir, "custom/tokenizer.json"),
-            os.path.join(project_dir, "pix2tex/model/dataset/tokenizer.json"),
-        )
-    else:
-        print("Custom tokenizer not found. Using default tokenizer.")
-
     # Load model
     custom_config = custom_arguments = {
-        "config": os.path.join(project_dir, "custom/config.yaml"),
-        "checkpoint": os.path.join(project_dir, "custom_checkpoints/best_model.pth"),
+        "config": os.path.join(project_dir, "custom/train_tok_config.yaml"),
+        "checkpoint": os.path.join(project_dir, "custom_checkpoints/model.pth"),
+        "tokenizer": os.path.join(project_dir, "custom/train_tokenizer.json"),
         "no_cuda": True,
         "no_resize": False,
     }
