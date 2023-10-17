@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 checkpoints/
 /custom_checkpoints/*.pth
+custom/*_tokenizer.json
 
 # C extensions
 *.so
