@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=opennmt
+#SBATCH --job-name=latexocr
 #SBATCH --account=adarsh
 #SBATCH --output=%x.out
 #SBATCH --nodes=1
@@ -13,4 +13,5 @@
 #SBATCH --mail-user=abanerjee@arizona.edu
 
 module load python/3.11
+rm -rf checkpoints
 ./scripts/run_original_training
