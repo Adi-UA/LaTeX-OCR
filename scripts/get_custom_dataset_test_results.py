@@ -3,6 +3,7 @@ import json
 import multiprocessing
 import os
 import time
+from typing import Tuple
 
 from munch import Munch
 from PIL import Image
@@ -28,15 +29,15 @@ def save_results(dataset: str, results: dict, errors: dict):
     print(f"Saved results to {results_dir}.")
 
 
-def load_completed_result_ids(dataset: str) -> set:
+def load_completed_result_ids(dataset: str) -> Tuple[dict, set]:
     results_dir = os.path.join(project_dir, "results")
     try:
         with open(os.path.join(results_dir, f"{dataset}_test_results.json"), "r") as f:
             results = json.load(f)
         ids = {int(k) for k in results.keys()}
-        return ids
+        return results, ids
     except FileNotFoundError:
-        return set()
+        return {}, set()
 
 
 def get_test_formulae(dataset: str) -> list:
@@ -103,7 +104,8 @@ if __name__ == "__main__":
 
     final_results = {}
     final_errors = []
-    completed = load_completed_result_ids(args.dataset)
+    results, completed = load_completed_result_ids(args.dataset)
+    final_results.update(results)
     for i, chunk in enumerate(test_data_chunks):
         print(f"Processing chunk {i}...")
         arg_batches = [
@@ -132,6 +134,8 @@ if __name__ == "__main__":
         print(f"Total errors: {len(final_errors)}")
         save_results(args.dataset, final_results, final_errors)
 
+    # sort results by key
+    final_results = dict(sorted(final_results.items(), key=lambda x: int(x[0])))
     save_results(args.dataset, final_results, final_errors)
     end_time = time.perf_counter()
     print(f"Finished in {end_time - start_time} seconds.")
